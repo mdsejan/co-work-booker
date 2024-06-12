@@ -8,6 +8,7 @@ const UserSchema = new Schema<IUser>({
   phone: { type: String, required: true },
   address: { type: String, required: true },
   role: { type: String, required: true, enum: ["user", "admin"] },
+  isDeleted: { type: Boolean, default: false },
 });
 
 export const UserModel = model<IUser>("User", UserSchema);
