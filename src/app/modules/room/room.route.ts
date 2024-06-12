@@ -2,6 +2,6 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/signup");
+router.post("/rooms");
 
-export const UserRoutes = router;
+export const RoomRoutes = router;
