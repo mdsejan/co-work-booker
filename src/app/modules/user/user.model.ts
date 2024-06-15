@@ -14,10 +14,23 @@ const UserSchema = new Schema<IUser>({
 });
 
 UserSchema.pre("save", async function (next) {
-  this.password = await bcrypt.hash(
-    this.password,
-    Number(config.bcrypt_salt_rounds)
-  );
+  const user = this;
+  try {
+    const salt = config.bcrypt_salt_rounds;
+    if (!salt) {
+      throw new Error("salt not found");
+    }
+    user.password = await bcrypt.hash(user.password, Number(salt));
+    next();
+  } catch (err: any) {
+    next(err);
+  }
 });
+
+UserSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 
 export const UserModel = model<IUser>("User", UserSchema);
