@@ -1,6 +1,8 @@
 import noDataFound from "../../error/noDataFound";
 import catchAsync from "../../utils/catchAsync";
+import sendResponse from "../../utils/sendResponse";
 import { userServices } from "./user.service";
+import httpStatus from "http-status";
 
 const signupUser = catchAsync(async (req, res) => {
   const data = req.body;
@@ -13,9 +15,9 @@ const signupUser = catchAsync(async (req, res) => {
   if (!result) {
     return noDataFound(res);
   }
-  res.status(200).json({
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
     success: true,
-    statusCode: 200,
     message: "User registered successfully",
     data: result,
   });
