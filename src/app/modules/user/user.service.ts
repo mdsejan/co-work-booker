@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { IUser } from "./user.interface";
 import { UserModel } from "./user.model";
 
@@ -15,6 +16,28 @@ const signupUserIntoDB = async (payload: IUser) => {
   return result;
 };
 
+// login service
+const loginUserIntoDB = async (email: string, password: string) => {
+  if (!email && !password) {
+    throw new Error("Email and password are required");
+  }
+
+  const user = await UserModel.findOne({ email: email });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    throw new Error("Password is incorrect");
+  }
+
+  return user;
+};
+
 export const userServices = {
   signupUserIntoDB,
+  loginUserIntoDB,
 };
