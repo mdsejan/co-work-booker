@@ -6,6 +6,12 @@ const createRoomIntoDb = async (data: IRoom) => {
   return result;
 };
 
+const getAllRoomsFromDB = async () => {
+  const result = await RoomModel.find({ isDeleted: false });
+  return result;
+};
+
 export const RoomServices = {
   createRoomIntoDb,
+  getAllRoomsFromDB,
 };
