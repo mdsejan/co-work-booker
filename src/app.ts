@@ -14,8 +14,5 @@ app.use("/api", router);
 
 app.use(globalErrorHandler);
 app.use(notFound);
-app.get("/", (req, res) => {
-  res.send("App is Running");
-});
 
 export default app;
