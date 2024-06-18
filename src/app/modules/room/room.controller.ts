@@ -4,6 +4,7 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { RoomServices } from "./room.service";
 
+// ===> Create Room (Only Accessible by Admin) <===
 const createRoom = catchAsync(async (req, res) => {
   const roomData = req.body;
   if (!roomData) {
@@ -23,6 +24,7 @@ const createRoom = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Get All Rooms <===
 const getAllRooms = catchAsync(async (req, res) => {
   const result = await RoomServices.getAllRoomsFromDB();
   if (!result || result.length === 0) {
@@ -36,7 +38,24 @@ const getAllRooms = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Get Room By Id <===
+const getRoomById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await RoomServices.getRoomByIdFromDB(id);
+  if (!result) {
+    return noDataFound(res);
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Rooms retrieved successfully",
+    data: result,
+  });
+});
+
 export const RoomControllers = {
   createRoom,
   getAllRooms,
+  getRoomById,
 };
