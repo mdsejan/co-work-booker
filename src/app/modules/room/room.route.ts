@@ -18,4 +18,6 @@ router.post(
 router.get("/", RoomControllers.getAllRooms);
 router.get("/:id", RoomControllers.getRoomById);
 
+router.put("/:id", auth, isAdmin, RoomControllers.updateRoom);
+
 export const RoomRoutes = router;
