@@ -1,9 +1,16 @@
 import { minutesToTime, timeToMinutes } from "../../utils/ConvertTime";
+import { RoomModel } from "../room/room.model";
 import { ISlot } from "./slot.interface";
 import { SlotModel } from "./slot.model";
 
 const createSlotsIntoDb = async (data: ISlot) => {
   const { room, date, startTime, endTime } = data;
+
+  const roomExists = await RoomModel.findById(room);
+
+  if (!roomExists) {
+    throw new Error(`Room with ID ${room} does not exist.`);
+  }
 
   const startMinutes = timeToMinutes(startTime);
   const endMinutes = timeToMinutes(endTime);
