@@ -22,7 +22,7 @@ Users can effortlessly book rooms for their meetings:
 
 ### Validation and Error Handling:
 
-SpaceSync implements robust mechanisms for seamless user experiences:
+CoWorkBooker implements robust mechanisms for seamless user experiences:
 
 - Informative error messages for booking conflicts and validation errors.
 - Ensure smooth interactions and accurate data handling.
