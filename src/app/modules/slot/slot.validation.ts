@@ -8,6 +8,6 @@ const slotValidationZodSchema = z.object({
   isBooked: z.boolean().default(false),
 });
 
-export const RoomValidation = {
+export const SlotValidation = {
   slotValidationZodSchema,
 };
