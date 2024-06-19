@@ -1,6 +1,6 @@
 import { minutesToTime, timeToMinutes } from "../../utils/ConvertTime";
 import { RoomModel } from "../room/room.model";
-import { ISlot } from "./slot.interface";
+import { ISlot, QueryParams } from "./slot.interface";
 import { SlotModel } from "./slot.model";
 
 const createSlotsIntoDb = async (data: ISlot) => {
@@ -32,6 +32,28 @@ const createSlotsIntoDb = async (data: ISlot) => {
   return result;
 };
 
+const getAllAvailableSlotsFromDB = async (queryParams: QueryParams) => {
+  const { date, room, isbooked } = queryParams;
+
+  // Build query object
+  let query: Record<string, any> = { isBooked: false };
+
+  if (date) {
+    query = { date };
+  }
+  if (room) {
+    query = { room };
+  }
+  if (isbooked) {
+    query = { isBooked: isbooked };
+  }
+
+  // Fetch available slots
+  const slots = await SlotModel.find(query).populate("room");
+  return slots;
+};
+
 export const slotServices = {
   createSlotsIntoDb,
+  getAllAvailableSlotsFromDB,
 };

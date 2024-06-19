@@ -5,3 +5,9 @@ export interface ISlot {
   endTime: string;
   isBooked: boolean;
 }
+
+export interface QueryParams {
+  date?: string;
+  room?: string;
+  isbooked?: boolean;
+}
