@@ -131,7 +131,28 @@ The server will start running at `http://localhost:5000`.
    - **Route:** `{domain}/api/slots` `POST`
 
 9. **Get available slots**
+
    - **Route:** `{domain}/api/slots/availability` `GET`
    - **Route:** `{domain}/api/slots/availability?date=2024-06-15` `GET`
    - **Route:** `{domain}/api/slots/availability?roomId=60d9c4e4f3b4b544b8b8d1c5` `GET`
    - **Route:** `{domain}/api/slots/availability?date=2024-06-15&roomId=60d9c4e4f3b4b544b8b8d1c5` `GET`
+
+10. **Create a Booking (Only Accessible by Authenticated User)**
+
+- **Route:** `{domain}/api/bookings` `POST`
+
+11. **Get All Bookings (Only Accessible by Admin)**
+
+- **Route:** `{domain}/api/bookings` `GET`
+
+12. **Get User's Bookings (Only Accessible by Authenticated User)**
+
+- **Route:** `{domain}/api/my-bookings` `GET`
+
+13. **Update Booking (Only Accessible by Admin)**
+
+- **Route:** `{domain}/api/bookings/:id` `PUT`
+
+14. **Delete Booking (Soft Delete, Only Accessible by Admin)**
+
+- **Route:** `{domain}/api/bookings/:id` `DELETE`
