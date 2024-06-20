@@ -2,6 +2,9 @@ import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { bookingServices } from "./booking.service";
+import noDataFound from "../../error/noDataFound";
+
+// ===> Create Booking <===
 
 const createBooking = catchAsync(async (req, res) => {
   const data = req.body;
@@ -23,6 +26,21 @@ const createBooking = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Get All Bookings <===
+const getAllBookings = catchAsync(async (req, res) => {
+  const result = await bookingServices.getBookingsFromDB();
+  if (!result || result.length === 0) {
+    return noDataFound(res);
+  }
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "All bookings retrieved successfully",
+    data: result,
+  });
+});
+
 export const bookingController = {
   createBooking,
+  getAllBookings,
 };

@@ -5,6 +5,7 @@ import { UserModel } from "../user/user.model";
 import { IBooking } from "./booking.interface";
 import { BookingModel } from "./booking.model";
 
+// ===> Create Booking Into DB <===
 const createBookingIntoDb = async (data: IBooking) => {
   const { room, slots, user, date } = data;
 
@@ -51,6 +52,13 @@ const createBookingIntoDb = async (data: IBooking) => {
   return result;
 };
 
+// ===> Get All Bookings From DB <===
+const getBookingsFromDB = async () => {
+  const result = await BookingModel.find();
+  return result;
+};
+
 export const bookingServices = {
   createBookingIntoDb,
+  getBookingsFromDB,
 };
