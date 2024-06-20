@@ -75,9 +75,29 @@ const updateBooking = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Delete a Room <===
+const deleteBooking = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new Error("Data is invalid or null");
+  }
+  const result = await bookingServices.deleteBookingFromDB(id);
+  if (!result) {
+    return noDataFound(res);
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Booking deleted successfully",
+    data: result,
+  });
+});
+
 export const bookingController = {
   createBooking,
   getAllBookings,
   getUserBookings,
   updateBooking,
+  deleteBooking,
 };

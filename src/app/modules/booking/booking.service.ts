@@ -80,9 +80,20 @@ const updateBookingIntoDB = async (id: string, payload: Partial<IBooking>) => {
   return result;
 };
 
+// ===> Delete a Booking <===
+const deleteBookingFromDB = async (id: string) => {
+  const result = await BookingModel.findByIdAndUpdate(
+    id,
+    { isDeleted: true },
+    { new: true }
+  );
+  return result;
+};
+
 export const bookingServices = {
   createBookingIntoDb,
   getBookingsFromDB,
   getUserBookingsFromDB,
   updateBookingIntoDB,
+  deleteBookingFromDB,
 };
