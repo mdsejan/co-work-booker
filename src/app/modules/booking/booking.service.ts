@@ -58,7 +58,17 @@ const getBookingsFromDB = async () => {
   return result;
 };
 
+// ===> Get User Bookings From DB <===
+const getUserBookingsFromDB = async (id: string) => {
+  const result = await BookingModel.find({ user: id })
+    .populate("room")
+    .populate("slots");
+
+  return result;
+};
+
 export const bookingServices = {
   createBookingIntoDb,
   getBookingsFromDB,
+  getUserBookingsFromDB,
 };

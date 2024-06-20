@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import config from "../config";
 
 interface JwtPayload {
-  id: string;
+  userId: string;
   role: string;
 }
 
@@ -20,7 +20,11 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decoded = jwt.verify(token, config.jwtSecret || "") as JwtPayload;
-    req.user = decoded;
+    req.user = { id: decoded.userId }; // Adjust based on your JWT payload
+
+    if (!req.user.id) {
+      throw new Error("User ID not found in token payload");
+    }
     next();
   } catch (error) {
     console.error("Error in authentication middleware:", error);

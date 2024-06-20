@@ -41,7 +41,7 @@ const loginUser = catchAsync(async (req, res) => {
   // create token and send to the client
 
   const jwtPayload = {
-    userId: user,
+    userId: user._id,
     role: user.role,
   };
 
