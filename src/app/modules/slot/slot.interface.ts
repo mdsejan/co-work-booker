@@ -1,5 +1,7 @@
+import { Types } from "mongoose";
+
 export interface ISlot {
-  room: string;
+  room: Types.ObjectId;
   date: string;
   startTime: string;
   endTime: string;
