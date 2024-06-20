@@ -15,5 +15,6 @@ router.post(
 );
 
 router.get("/", auth, isAdmin, bookingController.getAllBookings);
+router.put("/:id", auth, isAdmin, bookingController.updateBooking);
 
 export const BookingRoutes = router;

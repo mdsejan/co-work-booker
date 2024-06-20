@@ -5,7 +5,6 @@ import { bookingServices } from "./booking.service";
 import noDataFound from "../../error/noDataFound";
 
 // ===> Create Booking <===
-
 const createBooking = catchAsync(async (req, res) => {
   const data = req.body;
 
@@ -57,8 +56,28 @@ const getUserBookings = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Update Booking By Id <===
+const updateBooking = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  console.log(id);
+  const result = await bookingServices.updateBookingIntoDB(id, req.body);
+
+  if (!result) {
+    return noDataFound(res);
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Booking updated successfully",
+    data: result,
+  });
+});
+
 export const bookingController = {
   createBooking,
   getAllBookings,
   getUserBookings,
+  updateBooking,
 };

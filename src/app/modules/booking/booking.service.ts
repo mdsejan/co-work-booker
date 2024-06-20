@@ -64,6 +64,19 @@ const getUserBookingsFromDB = async (id: string) => {
     .populate("room")
     .populate("slots");
 
+  const sanitizedResult = result.map((booking: any) => {
+    const { user, ...rest } = booking.toObject();
+    return rest;
+  });
+
+  return sanitizedResult;
+};
+
+// ===> Update Booking Into DB <===
+const updateBookingIntoDB = async (id: string, payload: Partial<IBooking>) => {
+  const result = await BookingModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
   return result;
 };
 
@@ -71,4 +84,5 @@ export const bookingServices = {
   createBookingIntoDb,
   getBookingsFromDB,
   getUserBookingsFromDB,
+  updateBookingIntoDB,
 };

@@ -20,10 +20,13 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decoded = jwt.verify(token, config.jwtSecret || "") as JwtPayload;
-    req.user = { id: decoded.userId }; // Adjust based on your JWT payload
+    req.user = { id: decoded.userId, role: decoded.role };
 
     if (!req.user.id) {
       throw new Error("User ID not found in token payload");
+    }
+    if (!req.user.role) {
+      throw new Error("No role found in token payload");
     }
     next();
   } catch (error) {
