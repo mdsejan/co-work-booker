@@ -54,7 +54,10 @@ const createBookingIntoDb = async (data: IBooking) => {
 
 // ===> Get All Bookings From DB <===
 const getBookingsFromDB = async () => {
-  const result = await BookingModel.find();
+  const result = await BookingModel.find()
+    .populate("slots")
+    .populate("room")
+    .populate("user");
   return result;
 };
 
