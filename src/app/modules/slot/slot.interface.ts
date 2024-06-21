@@ -10,6 +10,6 @@ export interface ISlot {
 
 export interface QueryParams {
   date?: string;
-  room?: string;
+  roomId?: string;
   isbooked?: boolean;
 }

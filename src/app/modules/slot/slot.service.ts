@@ -33,19 +33,19 @@ const createSlotsIntoDb = async (data: ISlot) => {
 };
 
 const getAllAvailableSlotsFromDB = async (queryParams: QueryParams) => {
-  const { date, room, isbooked } = queryParams;
+  const { date, roomId, isbooked } = queryParams;
 
   // Build query object
   let query: Record<string, any> = { isBooked: false };
 
   if (date) {
-    query = { date };
+    query.date = date;
   }
-  if (room) {
-    query = { room };
+  if (roomId) {
+    query.room = roomId;
   }
   if (isbooked) {
-    query = { isBooked: isbooked };
+    query.isBooked = isbooked;
   }
 
   // Fetch available slots
