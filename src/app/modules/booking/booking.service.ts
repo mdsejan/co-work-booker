@@ -54,7 +54,7 @@ const createBookingIntoDb = async (data: IBooking) => {
 
 // ===> Get All Bookings From DB <===
 const getBookingsFromDB = async () => {
-  const result = await BookingModel.find()
+  const result = await BookingModel.find({ isDeleted: false })
     .populate("slots")
     .populate("room")
     .populate("user");
@@ -63,7 +63,7 @@ const getBookingsFromDB = async () => {
 
 // ===> Get User Bookings From DB <===
 const getUserBookingsFromDB = async (id: string) => {
-  const result = await BookingModel.find({ user: id })
+  const result = await BookingModel.find({ user: id, isDeleted: false })
     .populate("room")
     .populate("slots");
 
