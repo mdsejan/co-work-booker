@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "636ba77b-eb9a-4787-bcde-a0d122137cd4",
+		"name": "Co-Work-Booker(Dev)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30539536"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Abir\",\r\n  \"email\": \"abir@gmail.com\",\r\n  \"password\": \"abir1234\",\r\n  \"phone\": \"1234567876\",\r\n  \"role\": \"user\",\r\n  \"address\": \"122 Main Street, City, Country\"\r\n}\r\n  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"web@programming-hero.com\",\r\n    \"password\": \"ph-password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "create room",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcxNDE5M2QyNjBkZDNkOWQ1MjM4OGQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg5MTU1MDAsImV4cCI6MTcxODkyMjcwMH0.iOufGKtRSaggpNPb8Ad9oJ3gnEnfLBaAhm1M2ufCDPA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Conference Room2\",\r\n    \"roomNo\": 205,\r\n    \"floorNo\": 7,\r\n    \"capacity\": 25,\r\n    \"pricePerSlot\": 109,\r\n    \"amenities\": [\r\n        \"Projector\",\r\n        \"Whiteboard\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/rooms/60d9c4e4f3b4b544b8b8d1c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"rooms",
+								"60d9c4e4f3b4b544b8b8d1c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Room",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsiX2lkIjoiNjY3MTQxOTNkMjYwZGQzZDlkNTIzODhkIiwibmFtZSI6IlByb2dyYW1taW5nIEhlcm8iLCJlbWFpbCI6IndlYkBwcm9ncmFtbWluZy1oZXJvLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5MCIsImFkZHJlc3MiOiIxMjMgTWFpbiBTdHJlZXQsIENpdHksIENvdW50cnkiLCJyb2xlIjoiYWRtaW4iLCJpc0RlbGV0ZWQiOmZhbHNlLCJfX3YiOjB9LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg3MzYzMzUsImV4cCI6MTcxODc0MzUzNX0.ZKRlQtDMpbCM-XvVKPeTi7Kg1f_nn_nsdimYONsmqJE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pricePerSlot\": 219,\r\n    \"capacity\": 16,\r\n    \"floorNo\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/rooms/66714f3f8e92d7f69f84b930",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"rooms",
+								"66714f3f8e92d7f69f84b930"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Room",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsiX2lkIjoiNjY3MTQxOTNkMjYwZGQzZDlkNTIzODhkIiwibmFtZSI6IlByb2dyYW1taW5nIEhlcm8iLCJlbWFpbCI6IndlYkBwcm9ncmFtbWluZy1oZXJvLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5MCIsImFkZHJlc3MiOiIxMjMgTWFpbiBTdHJlZXQsIENpdHksIENvdW50cnkiLCJyb2xlIjoiYWRtaW4iLCJpc0RlbGV0ZWQiOmZhbHNlLCJfX3YiOjB9LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg3Mzg4NDIsImV4cCI6MTcxODc0NjA0Mn0.76aTGeiMSWWR9OmPI06m3AeXGJJDSTriqH1AXQDVOug",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/rooms/60d9c4e4f3b4b544b8b8d1c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"rooms",
+								"60d9c4e4f3b4b544b8b8d1c5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Slot",
+			"item": [
+				{
+					"name": "Slot Create",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Slots",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/slots/availability?date=2024-06-16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"slots",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2024-06-16"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsiX2lkIjoiNjY3NDgxMWM3ZDg3ZWFkZDRmMzY4ZWE3IiwibmFtZSI6IkFiaXIiLCJlbWFpbCI6ImFiaXJAZ21haWwuY29tIiwicGhvbmUiOiIxMjM0NTY3ODc2IiwiYWRkcmVzcyI6IjEyMiBNYWluIFN0cmVldCwgQ2l0eSwgQ291bnRyeSIsInJvbGUiOiJ1c2VyIiwiaXNEZWxldGVkIjpmYWxzZSwiX192IjowfSwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTg5MTEyOTMsImV4cCI6MTcxODkxODQ5M30.g4fMXmHHTMyebXkTnyVE1N3TgQbJvvyqmxbsxTPG3z8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2024-06-16\",\r\n    \"slots\": [\r\n        \"667316ee25e7ea539d282fea\",\r\n        \"667316ee25e7ea539d282fed\"\r\n    ],\r\n    \"room\": \"66714f3f8e92d7f69f84b930\",\r\n    \"user\": \"6674811c7d87eadd4f368ea7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Bookings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsiX2lkIjoiNjY3MTQxOTNkMjYwZGQzZDlkNTIzODhkIiwibmFtZSI6IlByb2dyYW1taW5nIEhlcm8iLCJlbWFpbCI6IndlYkBwcm9ncmFtbWluZy1oZXJvLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5MCIsImFkZHJlc3MiOiIxMjMgTWFpbiBTdHJlZXQsIENpdHksIENvdW50cnkiLCJyb2xlIjoiYWRtaW4iLCJpc0RlbGV0ZWQiOmZhbHNlLCJfX3YiOjB9LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg5MDgyMjEsImV4cCI6MTcxODkxNTQyMX0.6b4mHJD_UwbFKMn6IhdUn0CgyJ0MGhuU091HpIEboeQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users Bookings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcxNDNkOGQyNjBkZDNkOWQ1MjM4OTciLCJyb2xlIjoidXNlciIsImlhdCI6MTcxODkxMTgyMywiZXhwIjoxNzE4OTE5MDIzfQ.1mXrHIrs6JPoNL06Qan2-dLQEij9CWZbOjoc8ydfhVQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/my-bookings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"my-bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcxNDE5M2QyNjBkZDNkOWQ1MjM4OGQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg5MTYwNzcsImV4cCI6MTcxODkyMzI3N30.cQJ_gPPall0oRNiKuUwDdOSFWpDtCkdpZSqs9-3mkUU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"isConfirmed\": \"confirmed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/bookings/66740805b8e50410c8ce8462",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"bookings",
+								"66740805b8e50410c8ce8462"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcxNDE5M2QyNjBkZDNkOWQ1MjM4OGQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTg5MTYwNzcsImV4cCI6MTcxODkyMzI3N30.cQJ_gPPall0oRNiKuUwDdOSFWpDtCkdpZSqs9-3mkUU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/bookings/66740805b8e50410c8ce8462",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"bookings",
+								"66740805b8e50410c8ce8462"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

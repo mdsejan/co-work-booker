@@ -58,7 +58,26 @@ const loginUser = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Get User By Id <===
+const getUserById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await userServices.getUserByIdFromDB(id);
+  if (!result) {
+    return noDataFound(res);
+  }
+
+  const { name, email } = result;
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "User retrieved successfully",
+    data: { name, email },
+  });
+});
+
 export const userController = {
   signupUser,
   loginUser,
+  getUserById,
 };
