@@ -35,8 +35,9 @@ const createSlotsIntoDb = async (data: ISlot) => {
 const getAllAvailableSlotsFromDB = async (queryParams: QueryParams) => {
   const { date, roomId, isbooked } = queryParams;
 
-  // Build query object
-  let query: Record<string, any> = { isBooked: false };
+  let query: Record<string, any> = {};
+
+  query.isBooked = isbooked !== undefined ? isbooked : false;
 
   if (date) {
     query.date = date;
@@ -44,16 +45,29 @@ const getAllAvailableSlotsFromDB = async (queryParams: QueryParams) => {
   if (roomId) {
     query.room = roomId;
   }
-  if (isbooked) {
-    query.isBooked = isbooked;
-  }
 
   // Fetch available slots
   const slots = await SlotModel.find(query).populate("room");
   return slots;
 };
 
+// ===> Update Slot Into DB <===
+const updateSlotIntoDB = async (id: string, payload: Partial<ISlot>) => {
+  const result = await SlotModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  return result;
+};
+
+// ===> Delete a Slot <===
+const deleteSlotFromDB = async (id: string) => {
+  const result = await SlotModel.findByIdAndDelete(id);
+  return result;
+};
+
 export const slotServices = {
   createSlotsIntoDb,
   getAllAvailableSlotsFromDB,
+  updateSlotIntoDB,
+  deleteSlotFromDB,
 };

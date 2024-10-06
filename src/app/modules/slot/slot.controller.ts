@@ -38,7 +38,46 @@ const getAvailableSlots = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Update Slot By Id <===
+const updateSlot = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const result = await slotServices.updateSlotIntoDB(id, req.body);
+
+  if (!result) {
+    return noDataFound(res);
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Slot updated successfully",
+    data: result,
+  });
+});
+
+// ===> Delete a Slot <===
+const deleteSlot = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    throw new Error("Data is invalid or null");
+  }
+  const result = await slotServices.deleteSlotFromDB(id);
+  if (!result) {
+    return noDataFound(res);
+  }
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Slot deleted successfully",
+    data: [],
+  });
+});
+
 export const slotController = {
   createSlots,
   getAvailableSlots,
+  updateSlot,
+  deleteSlot,
 };
