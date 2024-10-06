@@ -53,11 +53,19 @@ const createBookingIntoDb = async (data: IBooking) => {
 };
 
 // ===> Get All Bookings From DB <===
+// const getBookingsFromDB = async () => {
+//   const result = await BookingModel.find({ isDeleted: false })
+//     .populate("slots")
+//     .populate("room")
+//     .populate("user");
+//   return result;
+// };
+
+// ===> Get All Bookings From DB <===
 const getBookingsFromDB = async () => {
   const result = await BookingModel.find({ isDeleted: false })
-    .populate("slots")
-    .populate("room")
-    .populate("user");
+    .populate("room", "name")
+    .populate("user", "name");
   return result;
 };
 
