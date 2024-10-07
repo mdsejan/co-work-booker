@@ -75,7 +75,7 @@ const updateBooking = catchAsync(async (req, res) => {
   });
 });
 
-// ===> Delete a Room <===
+// ===> Delete a Booking <===
 const deleteBooking = catchAsync(async (req, res) => {
   const { id } = req.params;
   if (!id) {
