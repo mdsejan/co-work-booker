@@ -25,14 +25,32 @@ const createRoom = catchAsync(async (req, res) => {
 });
 
 // ===> Get All Rooms <===
+// const getAllRooms = catchAsync(async (req, res) => {
+//   const result = await RoomServices.getAllRoomsFromDB();
+//   if (!result || result.length === 0) {
+//     return noDataFound(res);
+//   }
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: httpStatus.OK,
+//     message: "Rooms retrieved successfully",
+//     data: result,
+//   });
+// });
+
+// ===> Get All Rooms <===
 const getAllRooms = catchAsync(async (req, res) => {
-  const result = await RoomServices.getAllRoomsFromDB();
+  const query = req.query;
+
+  const result = await RoomServices.getAllRoomsFromDB(query);
+
   if (!result || result.length === 0) {
     return noDataFound(res);
   }
+
   sendResponse(res, {
-    success: true,
     statusCode: httpStatus.OK,
+    success: true,
     message: "Rooms retrieved successfully",
     data: result,
   });
