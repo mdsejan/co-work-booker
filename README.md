@@ -159,6 +159,10 @@ The server will start running at `http://localhost:5000`.
 
 - **Route:** `{domain}/api/bookings/:id` `DELETE`
 
+1.  **get Available Dates of Slots**
+
+- **Route:** `{domain}/api/slots/dates/:id` `GET`
+
 ## API Endpoints Detailed
 
 ### User Routes
