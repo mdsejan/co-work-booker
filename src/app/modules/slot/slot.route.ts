@@ -16,6 +16,7 @@ router.post(
 );
 
 router.get("/availability", slotController.getAvailableSlots);
+router.get("/dates/:id", slotController.getAvailableDates);
 router.put("/:id", auth, isAdmin, slotController.updateSlot);
 router.delete("/:id", auth, isAdmin, slotController.deleteSlot);
 export const SlotRoutes = router;

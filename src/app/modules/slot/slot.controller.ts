@@ -38,6 +38,24 @@ const getAvailableSlots = catchAsync(async (req, res) => {
   });
 });
 
+// ===> Get Available Dates <===
+const getAvailableDates = catchAsync(async (req, res) => {
+  const { id } = req.params;
+
+  const dates = await slotServices.getAvailableDatesFromDB(id);
+
+  if (!dates || dates.length === 0) {
+    return noDataFound(res);
+  }
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Available dates retrieved successfully",
+    data: dates,
+  });
+});
+
 // ===> Update Slot By Id <===
 const updateSlot = catchAsync(async (req, res) => {
   const { id } = req.params;
@@ -78,6 +96,7 @@ const deleteSlot = catchAsync(async (req, res) => {
 export const slotController = {
   createSlots,
   getAvailableSlots,
+  getAvailableDates,
   updateSlot,
   deleteSlot,
 };

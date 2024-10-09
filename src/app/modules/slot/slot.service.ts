@@ -51,6 +51,14 @@ const getAllAvailableSlotsFromDB = async (queryParams: QueryParams) => {
   return slots;
 };
 
+const getAvailableDatesFromDB = async (id: string) => {
+  const result = await SlotModel.distinct("date", {
+    room: id,
+    isBooked: false,
+  });
+  return result;
+};
+
 // ===> Update Slot Into DB <===
 const updateSlotIntoDB = async (id: string, payload: Partial<ISlot>) => {
   const result = await SlotModel.findOneAndUpdate({ _id: id }, payload, {
@@ -68,6 +76,7 @@ const deleteSlotFromDB = async (id: string) => {
 export const slotServices = {
   createSlotsIntoDb,
   getAllAvailableSlotsFromDB,
+  getAvailableDatesFromDB,
   updateSlotIntoDB,
   deleteSlotFromDB,
 };
