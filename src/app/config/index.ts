@@ -9,4 +9,5 @@ export default {
   bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
   NODE_ENV: process.env.NODE_ENV,
   jwtSecret: process.env.JWT_SECRET,
+  stripeSecret: process.env.STRIPE_SECRET_KEY as string,
 };

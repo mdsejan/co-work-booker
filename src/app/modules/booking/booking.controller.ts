@@ -3,6 +3,10 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { bookingServices } from "./booking.service";
 import noDataFound from "../../error/noDataFound";
+import config from "../../config";
+import Stripe from "stripe";
+
+const stripe = require("stripe")(config.stripeSecret);
 
 // ===> Create Booking <===
 const createBooking = catchAsync(async (req, res) => {
@@ -22,6 +26,31 @@ const createBooking = catchAsync(async (req, res) => {
     success: true,
     message: "Booking created successfully",
     data: result,
+  });
+});
+
+// ===> Create Payment Intent <===
+const createPaymentIntent = catchAsync(async (req, res) => {
+  const { amount, currency = "usd" } = req.body;
+
+  if (!amount) {
+    throw new Error("Amount  is invalid or missing");
+  }
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount,
+    currency,
+    payment_method_types: ["card"],
+  });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Payment intent created successfully",
+    data: {
+      clientSecret: paymentIntent.client_secret,
+      paymentIntentId: paymentIntent.id,
+    },
   });
 });
 
@@ -100,4 +129,5 @@ export const bookingController = {
   getUserBookings,
   updateBooking,
   deleteBooking,
+  createPaymentIntent,
 };

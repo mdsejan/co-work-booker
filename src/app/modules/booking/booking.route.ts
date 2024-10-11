@@ -13,7 +13,7 @@ router.post(
   auth,
   bookingController.createBooking
 );
-
+router.post("/paymentintent", auth, bookingController.createPaymentIntent);
 router.get("/", auth, isAdmin, bookingController.getAllBookings);
 router.put("/:id", auth, isAdmin, bookingController.updateBooking);
 router.delete("/:id", auth, isAdmin, bookingController.deleteBooking);
